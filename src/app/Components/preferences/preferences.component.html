@@ -1,0 +1,75 @@
+<div class="row mb-2">
+  <div class="col-12">
+    <form
+      novalidate
+      (ngSubmit)="save()"
+      [formGroup]="preferenceForm"
+      id="preferences"
+    >
+      <div class="row m-1">
+        <label for="likeProgramming" class="col-3"
+          >How much I like programming:</label
+        >
+        <div class="col-4">
+          <input
+            #likeProgramming
+            id="likeProgrammingInput"
+            formControlName="likeProgramming"
+            class="form-control"
+            (keyup)="likeProgrammingChanged($event)"
+          />
+          <span
+            *ngIf="
+              preferenceForm.get('likeProgramming').touched &&
+              preferenceForm.get('likeProgramming').invalid
+            "
+            class="alert alert-danger alert-error"
+          >
+            <span *ngIf="preferenceForm.get('likeProgramming').errors?.pattern">
+              Please enter a valid numeric value
+            </span>
+          </span>
+        </div>
+      </div>
+      <div class="row m-1">
+        <label for="wayOfProgramming" class="col-3"
+          >Ways in which I like programming:</label
+        >
+        <div class="col-4">
+          <input
+            required
+            #wayOfProgramming
+            id="wayOfProgrammingInput"
+            formControlName="wayOfProgramming"
+            class="form-control"
+          />
+          <span
+            *ngIf="
+              preferenceForm.get('wayOfProgramming').touched &&
+              preferenceForm.get('wayOfProgramming').invalid
+            "
+            class="alert alert-danger alert-error"
+          >
+            <span
+              *ngIf="preferenceForm.get('wayOfProgramming').errors?.required"
+            >
+              Please enter what ways you like to program
+            </span>
+          </span>
+        </div>
+      </div>
+      <div class="row m-1">
+        <div class="off-set-3 col-4">
+          <button
+            type="submit"
+            class="btn btn-primary m-1"
+            [disabled]="!preferenceForm.valid"
+            [attr.disabled]="preferenceForm.valid ? null : 'disabled'"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

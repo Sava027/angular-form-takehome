@@ -1,0 +1,6 @@
+.alert-error {
+  display: inline-block;
+}
+.btn-primary:disabled {
+  background-color: gray;
+}
